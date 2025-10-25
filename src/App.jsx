@@ -6,8 +6,7 @@ import Coordinates from './pages/Coordinates';
 import Home from './pages/Home';
 import Location from './pages/Location';
 import Organization from './pages/Organization';
-import SpecialOperations from "./pages/SpecialOperations";
-
+import SpecialOperations from './pages/SpecialOperations';
 
 function App() {
   return (
