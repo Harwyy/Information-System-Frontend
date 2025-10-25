@@ -26,6 +26,12 @@ const Home = () => {
       description: 'Go to organizations',
       path: '/organizations',
     },
+    {
+      icon: '🚧',
+      title: 'Special operations',
+      description: 'Go to special operations',
+      path: '/spec-operations',
+    },
   ];
 
   return (

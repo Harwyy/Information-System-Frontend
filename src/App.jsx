@@ -6,6 +6,8 @@ import Coordinates from './pages/Coordinates';
 import Home from './pages/Home';
 import Location from './pages/Location';
 import Organization from './pages/Organization';
+import SpecialOperations from "./pages/SpecialOperations";
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Route path="/locations" element={<Location />} />
           <Route path="/addresses" element={<Address />} />
           <Route path="/organizations" element={<Organization />} />
+          <Route path="/spec-operations" element={<SpecialOperations />} />
         </Routes>
       </div>
     </Router>
