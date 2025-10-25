@@ -67,7 +67,7 @@ class SpecialOperationAPI {
     async getAllOrganizations(
         pageRequest = {
             page: 0,
-            size: 100, // Увеличиваем размер для получения всех организаций
+            size: 100,
             sortBy: 'id',
             direction: 'ASC',
             name: null,
