@@ -25,14 +25,12 @@ const OrganizationForm = ({
     const loadData = async () => {
       setLoadingData(true);
       try {
-        // Загружаем координаты
         const coordsResponse = await coordinatesAPI.getAllCoordinates();
         const coordsArray = Array.isArray(coordsResponse)
           ? coordsResponse
           : coordsResponse?.content || coordsResponse?.data || [];
         setCoordinates(coordsArray);
 
-        // Загружаем адреса
         const addressesResponse = await addressAPI.getAllAddresses();
         const addressesArray = Array.isArray(addressesResponse)
           ? addressesResponse
@@ -80,7 +78,7 @@ const OrganizationForm = ({
           />
 
           <div className="form-group">
-            <label>Coordinates *</label>
+            <label>Coordinates: </label>
             <select
               name="coordinatesId"
               value={formData.coordinatesId || ''}
@@ -101,7 +99,7 @@ const OrganizationForm = ({
           </div>
 
           <div className="form-group">
-            <label>Official Address *</label>
+            <label>Official Address: </label>
             <select
               name="officialAddressId"
               value={formData.officialAddressId || ''}
@@ -122,7 +120,7 @@ const OrganizationForm = ({
           </div>
 
           <div className="form-group">
-            <label>Postal Address *</label>
+            <label>Postal Address: </label>
             <select
               name="postalAddressId"
               value={formData.postalAddressId || ''}
@@ -143,7 +141,7 @@ const OrganizationForm = ({
           </div>
 
           <div className="form-group">
-            <label>Organization Type *</label>
+            <label>Organization Type: </label>
             <select
               name="type"
               value={formData.type || ''}

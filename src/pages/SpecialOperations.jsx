@@ -202,6 +202,11 @@ const SpecialOperation = () => {
 
   return (
     <div className="special-operation-page">
+
+      <div className="special-operations-header">
+        Special Operations
+      </div>
+
       <LoadingIndicator
         loading={
           loading.updateCount ||

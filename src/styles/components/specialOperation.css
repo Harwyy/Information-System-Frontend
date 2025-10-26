@@ -502,3 +502,41 @@
         gap: var(--space-sm);
     }
 }
+
+.special-operations-header {
+    text-align: center;
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0 0 var(--space-xxl) 0;
+    padding: var(--space-xl) 0;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+}
+
+.special-operations-header::before {
+    content: '';
+    position: absolute;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: var(--gradient-accent);
+    opacity: 0.8;
+}
+
+.special-operations-header::after {
+    content: '';
+    position: absolute;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--accent-blue);
+    opacity: 0.6;
+}
