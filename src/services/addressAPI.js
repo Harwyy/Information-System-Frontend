@@ -114,12 +114,14 @@ class AddressAPI {
   }
 
   async updateAddress(id, addressData) {
+    // eslint-disable-next-line no-unused-vars
+    const { id: _, ...dataWithoutId } = addressData;
     const response = await fetch(`${API_BASE_URL}/address/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(addressData),
+      body: JSON.stringify(dataWithoutId),
     });
 
     if (!response.ok) {

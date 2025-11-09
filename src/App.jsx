@@ -4,6 +4,7 @@ import './styles/main.css';
 import Address from './pages/Address';
 import Coordinates from './pages/Coordinates';
 import Home from './pages/Home';
+import ImportHistory from "./pages/ImportHistory";
 import Location from './pages/Location';
 import Organization from './pages/Organization';
 import SpecialOperations from './pages/SpecialOperations';
@@ -19,6 +20,7 @@ function App() {
           <Route path="/addresses" element={<Address />} />
           <Route path="/organizations" element={<Organization />} />
           <Route path="/spec-operations" element={<SpecialOperations />} />
+          <Route path="/import-history" element={<ImportHistory />} />
         </Routes>
       </div>
     </Router>

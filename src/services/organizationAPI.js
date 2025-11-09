@@ -80,7 +80,7 @@ class OrganizationAPI {
     });
 
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData = await response.text();
       throw new Error(
         `HTTP ${response.status}: ${errorData || response.statusText}`
       );
@@ -90,16 +90,17 @@ class OrganizationAPI {
   }
 
   async updateOrganization(id, organizationData) {
+    // eslint-disable-next-line no-unused-vars
+    const { id: _, ...dataWithoutId } = organizationData;
     const response = await fetch(`${API_BASE_URL}/organization/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(organizationData),
+      body: JSON.stringify(dataWithoutId),
     });
-
     if (!response.ok) {
-      const errorData = await response.json();
+      const errorData = await response.text();
       throw new Error(
         `HTTP ${response.status}: ${errorData || response.statusText}`
       );

@@ -32,6 +32,12 @@ const Home = () => {
       description: 'Go to special operations',
       path: '/spec-operations',
     },
+    {
+      icon: '📤',
+      title: 'Import file',
+      description: 'Go to import file',
+      path: '/import-history',
+    },
   ];
 
   return (

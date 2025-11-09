@@ -75,12 +75,14 @@ class CoordinateAPI {
   }
 
   async updateCoordinate(id, coordinateData) {
+    // eslint-disable-next-line no-unused-vars
+    const { id: _, ...dataWithoutId } = coordinateData;
     const response = await fetch(`${API_BASE_URL}/coordinates/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(coordinateData),
+      body: JSON.stringify(dataWithoutId),
     });
 
     if (!response.ok) {

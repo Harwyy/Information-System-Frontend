@@ -86,12 +86,14 @@ class LocationAPI {
   }
 
   async updateLocation(id, locationData) {
+    // eslint-disable-next-line no-unused-vars
+    const { id: _, ...dataWithoutId } = locationData;
     const response = await fetch(`${API_BASE_URL}/location/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(locationData),
+      body: JSON.stringify(dataWithoutId),
     });
 
     if (!response.ok) {
