@@ -43,6 +43,35 @@ class ImportsAPI {
 
         return await response.text();
     }
+
+    async downloadImportFile(id, filename = 'imported-file.json') {
+        const response = await fetch(`${API_BASE_URL}/import/${id}/file`);
+
+        if (!response.ok) {
+            let errorMessage;
+            try {
+                const errorData = await response.json();
+                errorMessage = errorData.message || JSON.stringify(errorData);
+            } catch {
+                errorMessage = await response.text();
+            }
+            throw new Error(`HTTP ${response.status}: ${errorMessage}`);
+        }
+
+        const blob = await response.blob();
+
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+
+        return blob;
+    }
 }
 
 export default new ImportsAPI();

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import SampleHeader from '../components/Header';
@@ -7,7 +7,9 @@ import NotificationsContainer from '../components/NotificationsContainer';
 import { useImportOperations } from '../hooks/imports/useImportOperations';
 import { useImportsData } from '../hooks/imports/useImportsData';
 import { useNotifications } from '../hooks/useNotifications';
+import ImportsAPI from "../services/importsAPI";
 
+import DownloadImportByIdForm from './imports/DownloadImportByIdForm';
 import ImportForm from './imports/ImportForm';
 import ImportTable from './imports/ImportTable';
 
@@ -39,6 +41,10 @@ const Imports = () => {
         loadImports
     );
 
+    const [showDownloadForm, setShowDownloadForm] = useState(false);
+    const [downloadLoading, setDownloadLoading] = useState(false);
+    const [selectedImport, setSelectedImport] = useState(null);
+
     useEffect(() => {
         loadImports();
     }, []);
@@ -50,6 +56,33 @@ const Imports = () => {
         }
     };
 
+    const openDownloadForm = () => {
+        setShowDownloadForm(true);
+        setSelectedImport(null);
+    };
+
+    const closeDownloadForm = () => {
+        setShowDownloadForm(false);
+        setSelectedImport(null);
+    };
+
+    const handleDownloadById = async (importId) => {
+        if (!importId) {
+            addNotification('Please enter an import ID', 'error');
+            return;
+        }
+
+        setDownloadLoading(true);
+        try {
+            addNotification(`File download started for import ID: ${importId}`, 'success');
+            await ImportsAPI.downloadImportFile(importId);
+        } catch (error) {
+            addNotification(`Failed to download file: ${error.message}`, 'error');
+        } finally {
+            setDownloadLoading(false);
+        }
+    };
+
     const handleBack = () => {
         navigate('/');
     };
@@ -57,8 +90,12 @@ const Imports = () => {
     return (
         <div className="page-container">
             <LoadingIndicator
-                loading={loading || importLoading}
-                loadingText={importLoading ? "Importing file..." : "Loading imports..."}
+                loading={loading || importLoading || downloadLoading}
+                loadingText={
+                    importLoading ? "Importing file..." :
+                        downloadLoading ? "Downloading file..." :
+                            "Loading imports..."
+                }
             />
 
             <NotificationsContainer
@@ -76,8 +113,8 @@ const Imports = () => {
                 createText="Import File"
                 onBack={handleBack}
                 onCreate={openCreateForm}
+                onGetById={openDownloadForm}
                 loading={loading}
-                showGetById={false}
             />
 
             {showForm && (
@@ -85,6 +122,15 @@ const Imports = () => {
                     onSubmit={handleSubmitImport}
                     onCancel={closeForm}
                     loading={importLoading}
+                />
+            )}
+
+            {showDownloadForm && (
+                <DownloadImportByIdForm
+                    onDownload={handleDownloadById}
+                    onCancel={closeDownloadForm}
+                    loading={downloadLoading}
+                    importHistory={selectedImport}
                 />
             )}
 
