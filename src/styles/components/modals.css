@@ -1,0 +1,58 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-modal);
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: var(--gradient-primary);
+  padding: var(--space-xl);
+  border-radius: var(--radius-xxl);
+  border: 1px solid var(--border-secondary);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: var(--shadow-heavy);
+}
+
+.modal-content h2 {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.organization-form-modal {
+  max-height: 85vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 95%;
+  max-width: 800px;
+}
+
+.organization-form-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.organization-form-modal::-webkit-scrollbar-track {
+  background: rgba(25, 35, 95, 0.3);
+  border-radius: 4px;
+}
+
+.organization-form-modal::-webkit-scrollbar-thumb {
+  background: rgba(100, 181, 246, 0.5);
+  border-radius: 4px;
+}
+
+.organization-form-modal::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 181, 246, 0.7);
+}

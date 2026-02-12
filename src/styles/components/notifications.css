@@ -1,0 +1,128 @@
+.notifications-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: var(--z-notification);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 400px;
+}
+
+.notification {
+  background: var(--bg-overlay);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-light);
+  overflow: hidden;
+  animation: slideInRight 0.3s ease-out;
+  border: 1px solid var(--border-secondary);
+  border-left: 4px solid var(--accent-red);
+}
+
+.notification.success {
+  border-left-color: #4caf50;
+}
+
+.notification.error {
+  border-left-color: var(--accent-red);
+}
+
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.notification-message {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  flex: 1;
+  word-break: break-word;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--transition-fast);
+}
+
+.notification-close:hover {
+  background: rgba(100, 181, 246, 0.2);
+  color: var(--text-secondary);
+}
+
+.notification-progress {
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-red), var(--accent-orange));
+  animation: progressBar 5s linear forwards;
+}
+
+.notification.success .notification-progress {
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+}
+
+.error-message {
+  background: var(--bg-error);
+  border: 1px solid var(--border-error);
+  color: var(--text-error);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+}
+
+.error-close {
+  background: none;
+  border: none;
+  color: var(--text-error);
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.fixed-loading-indicator {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--bg-overlay);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(100, 181, 246, 0.5);
+  border-radius: var(--radius-lg);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-muted);
+  z-index: var(--z-loading);
+  box-shadow: var(--shadow-light);
+  animation: slideInUp 0.3s ease-out;
+  min-width: 160px;
+}
+
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(187, 222, 251, 0.3);
+  border-top: 2px solid var(--accent-light-blue);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
